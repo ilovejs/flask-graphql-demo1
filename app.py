@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
+
 import logging.config
 import os
 
 from flask import Flask, request, jsonify
 from flask_graphql import GraphQLView
 
-
 from service.graphql.graphql_schema import schema
 
-FLASK_ENV = os.getenv('FLASK_ENV')
+FLASK_ENV = 'dev' # os.getenv('FLASK_ENV')
 if not FLASK_ENV: raise ValueError('FLASK_ENV not set!')
-
 
 # Create App
 def create_app():
@@ -30,11 +29,15 @@ def create_app():
 
     app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))
 
+    print('sadfa')
     return app
 
 graphql_app = create_app()
 
 
 if __name__ == "__main__":
-    graphql_app.run(debug = graphql_app.config['DEBUG'])
+    graphql_app.run(
+        port=80,
+        host='0.0.0.0',
+        debug = True) 
 

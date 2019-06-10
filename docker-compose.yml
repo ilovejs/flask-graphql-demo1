@@ -1,13 +1,8 @@
-version: '3.6'
-services:
-    graphql-polymorphism:
-        container_name: graphql-docker
-        build: .
-        expose:
-            - 80
-        ports:
-            - "80:80"
-        logging:
-            driver: json-file
-        environment:
-            - FLASK_ENV=dev
+graphql-polymorphism:
+    image: graphql-docker
+    expose:
+        - "80"
+    ports:
+        - "80:80"
+    environment:
+        - FLASK_ENV=dev

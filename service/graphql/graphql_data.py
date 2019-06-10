@@ -19,10 +19,13 @@ def _append_json_ob(a,b):
 # end helper functions
 
 def read_localhost_file(key):
-        KEY = key + '.json'
-        with open('/graphql/data/'+ KEY) as json_data:
-            d = json.load(json_data)
-        return d
+    """
+    JSON file path is here
+    """
+    KEY = key + '.json'
+    with open('data/'+ KEY) as json_data:
+        d = json.load(json_data)
+    return d
 
 def resolve_target(sysid):
     s = json.dumps(read_localhost_file(sysid))
